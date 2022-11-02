@@ -1,26 +1,39 @@
+const DEFAULT_GRID_SIZE = 512;
 const DEFAULT_SQUARE_COUNT = 16;
-const DEFAULT_SQUARE_WIDTH = '8px';
+// const DEFAULT_SQUARE_WIDTH = '16px';
 
 const gridContainer = document.querySelector('.grid-container');
 const setGridSizeBtn = document.querySelector('#settings');
 
 setGridSizeBtn.addEventListener('click', () => {
-  let gridSize = +prompt('Enter the desired size of the grid: (MAX: 100)');
+  let gridSize = +prompt('Enter the desired size of the grid: (MAX: 64)');
 
-  if (gridSize > 100) return;
+  if (gridSize > 64) return;
   if (gridSize === 0) gridSize = DEFAULT_SQUARE_COUNT;
 
   destroyGrid(gridContainer);
-  generateSquareGrid(gridSize, DEFAULT_SQUARE_WIDTH, gridContainer);
+  generateSquareGrid(gridSize, gridContainer);
 });
 
-function generateSquareGrid(count, width, container) {
+function generateSquareGrid(count, container) {
   for (let i = 0; i < count; i++) {
     for (let j = 0; j < count; j++) {
       const square = document.createElement('div');
       square.classList.add('square');
-      square.style.width = width;
-      square.style.height = width;
+      square.style.width = `${DEFAULT_GRID_SIZE / count}px`;
+      square.style.height = `${DEFAULT_GRID_SIZE / count}px`;
+      square.style.borderBottom = '1px solid #bdbdbd';
+      square.style.borderRight = '1px solid #bdbdbd';
+      
+      if (i === count - 1) {
+        square.style.borderLeft = '0';
+        square.style.borderBottom = '0';
+      }
+
+      if (j === count - 1) {
+        square.style.borderRight = '0';
+      }
+
       square.addEventListener('mouseover', function () {
         this.classList.add('hovered-square');
       });
@@ -38,4 +51,4 @@ function destroyGrid(container) {
   container.style.gridTemplateRows = '0px';
 }
 
-generateSquareGrid(DEFAULT_SQUARE_COUNT, DEFAULT_SQUARE_WIDTH, gridContainer);
+generateSquareGrid(DEFAULT_SQUARE_COUNT, gridContainer);
