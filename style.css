@@ -5,5 +5,13 @@
 .grid-container {
   display: grid;
   justify-content: start;
-  gap: 8px;
+  /* gap: 8px; */
+}
+
+.square {
+  background-color: #ccc;
+}
+
+.hovered-square {
+  background-color: black;
 }
