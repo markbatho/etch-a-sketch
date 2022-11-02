@@ -1,0 +1,9 @@
+* {
+  box-sizing: border-box;
+}
+
+.grid-container {
+  display: grid;
+  justify-content: start;
+  gap: 8px;
+}
