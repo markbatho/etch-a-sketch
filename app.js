@@ -4,12 +4,12 @@ const BORDER = false;
 // const DEFAULT_SQUARE_WIDTH = '16px';
 
 const gridContainer = document.querySelector('.grid-container');
-const setGridSizeBtn = document.querySelector('#settings');
+const gridSizeBtn = document.querySelector('#settings');
 
-setGridSizeBtn.addEventListener('click', () => {
-  let gridSize = +prompt('Enter the desired size of the grid: (MAX: 64)');
+gridSizeBtn.addEventListener('click', () => {
+  let gridSize = +prompt('Enter the desired size of the grid: (MAX: 128)');
 
-  if (gridSize > 64) return;
+  if (gridSize > 128) return;
   if (gridSize === 0) gridSize = DEFAULT_SQUARE_COUNT;
 
   destroyGrid(gridContainer);
